@@ -2,6 +2,7 @@ package com.example.composeacornbox.ui.page.home
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.example.composeacornbox.R
 import com.example.composeacornbox.constant.ACN_Balance
 import com.example.composeacornbox.ui.theme.splashAssets
+import com.example.composeacornbox.ui.widget.StickyListView
 
 /**
  * @Author: LuoJia
@@ -45,7 +47,9 @@ import com.example.composeacornbox.ui.theme.splashAssets
 @Composable
 fun HomePage() {
     Box(
-        modifier = Modifier.fillMaxSize().background(Color.White),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
         contentAlignment = Alignment.BottomCenter
     ) {
         Column(
@@ -95,7 +99,9 @@ private fun Header() {
             modifier = Modifier.fillMaxSize()
         )
         Column(
-            modifier = Modifier.fillMaxSize().padding(start = 20.dp, end = 20.dp, top = 40.dp, bottom = 30.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 20.dp, end = 20.dp, top = 40.dp, bottom = 30.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -115,24 +121,30 @@ private fun Header() {
                         }
                     ),
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp).clickable {
-                        eyeState = when(eyeState) {
-                            SwitchState.CLOSE -> SwitchState.OPEN
-                            SwitchState.OPEN -> SwitchState.CLOSE
-                        }
-                    },
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable {
+                            eyeState = when (eyeState) {
+                                SwitchState.CLOSE -> SwitchState.OPEN
+                                SwitchState.OPEN -> SwitchState.CLOSE
+                            }
+                        },
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Image(
                     painter = painterResource(R.drawable.img_account_white),
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp).clickable {  }
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable { }
                 )
                 Spacer(modifier = Modifier.size(15.dp))
                 Image(
                     painter = painterResource(R.drawable.img_plus_white),
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp).clickable {  }
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clickable { }
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
@@ -167,12 +179,17 @@ private fun Header() {
 @Composable
 private fun KYCCard() {
     Surface(
-        modifier = Modifier.fillMaxWidth().height(260.dp).padding(10.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(260.dp)
+            .padding(10.dp),
         color = Color(0xFFF9E2DE),
         shape = RoundedCornerShape(40.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(30.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(30.dp),
         ) {
             Image(
                 painter = painterResource(R.drawable.img_illustration_task),
@@ -207,10 +224,11 @@ private fun KYCCard() {
     }
 }
 
-val initBottomHeight = 310.dp
+val initBottomHeight = 610f
 var bottomHeight by mutableStateOf(initBottomHeight)
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun BottomSlider() {
 //    var bottomHeight by remember {
@@ -223,35 +241,14 @@ private fun BottomSlider() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(bottomHeight)
-            .padding(horizontal = 10.dp)
+            .height(with(LocalDensity.current) { bottomHeight.toDp() })
             .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
-            .background(Color(0xfff09035))
-//            .pointerInput(Unit) {
-//                detectDragGestures(
-//                    onDrag = { _: PointerInputChange, dragAmount: Offset ->
-//                        val delta = dragAmount.y.toDp()
-//                        bottomHeight -= delta
-//                    }
-//                )
-//            }
+            .background(Color.White)
             .padding(vertical = 30.dp)
             .nestedScroll(nestedScrollConnection)
 
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(20) {
-                Text(
-                    text = "测试",
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    fontSize = 20.sp,
-                    color = Color.White
-                )
-            }
-        }
+        StickyListView()
     }
 }
 
@@ -263,12 +260,11 @@ private fun BottomSlider() {
 /**
  *  处理嵌套滑动
  */
-private class BottomSliderNestedScrollConnection(val height: Dp) : NestedScrollConnection {
+private class BottomSliderNestedScrollConnection(val height: Float) : NestedScrollConnection {
     override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
         return if (source == NestedScrollSource.Drag && available.y < 0) {
-            if (height < 600.dp) {
-                val delta = with(LocalDensity.current){ available.y.toDp() }
-                bottomHeight -= delta
+            if (height < 1400) {
+                bottomHeight -= available.y
                 Offset(x = 0f, y = available.y)
             } else {
                 Offset.Zero
@@ -283,9 +279,16 @@ private class BottomSliderNestedScrollConnection(val height: Dp) : NestedScrollC
         available: Offset,
         source: NestedScrollSource
     ): Offset {
-        if (source == NestedScrollSource.Drag && available.y > 0) {
+        return if (source == NestedScrollSource.Drag && available.y > 0) {
+            if (height >= 610) {
+                bottomHeight -= available.y
+                Offset(x = 0f, y = available.y)
+            } else {
+                Offset.Zero
+            }
+        } else {
+            Offset.Zero
         }
-        return super.onPostScroll(consumed, available, source)
     }
 
     override suspend fun onPreFling(available: Velocity): Velocity {

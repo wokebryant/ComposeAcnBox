@@ -4,14 +4,15 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 /**
  * @Author: LuoJia
- * @Date: Application基类
- * @Description:
+ * @Date:
+ * @Description: Application基类
  */
 @HiltAndroidApp
-class BaseApplication : Application()  {
+class App : Application()  {
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var CONTEXT: Context

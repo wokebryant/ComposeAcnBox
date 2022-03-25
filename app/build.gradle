@@ -74,28 +74,31 @@ dependencies {
     /** google开源 */
     implementation 'com.google.android.material:material:1.4.0'
     implementation "com.google.code.gson:gson:2.8.6"
-    implementation "com.google.dagger:hilt-android:2.41"
-    kapt "com.google.dagger:hilt-compiler:2.41"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     /** accompanist辅助插件 */
     implementation "com.google.accompanist:accompanist-insets:$accompanist_version"
     implementation "com.google.accompanist:accompanist-coil:0.15.0"
-    //系统ui控制器
+    // 系统ui控制器
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
-    //glide
-    implementation "com.google.accompanist:accompanist-glide:0.15.0"
-    //viewPager
+    // viewPager
     implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
-    //下拉刷新
+    // 下拉刷新
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
-    //流式布局
+    // 流式布局
     implementation "com.google.accompanist:accompanist-flowlayout:$accompanist_version"
-    //placeholder
+    // placeholder
     implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist_version"
+    // 导航动画
+    implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
 
     /** 三方库 */
     implementation 'com.tencent:mmkv:1.2.12'
+    implementation "com.airbnb.android:lottie-compose:5.0.3"
+    implementation "io.coil-kt:coil-compose:2.0.0-rc02"
+    implementation "io.coil-kt:coil-gif:2.0.0-rc02"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -5,10 +5,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.*
-import androidx.compose.ui.graphics.Color
 import com.example.composeacornbox.R
+import com.example.composeacornbox.ui.widget.LightStatusBar
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -83,11 +82,7 @@ fun ACNBoxTheme(
     }
 
     // 设置状态栏属性
-    val systemUiController = rememberSystemUiController()
-    val useDarkIcons = /*MaterialTheme.colors.isLight*/false
-    SideEffect {
-        systemUiController.setStatusBarColor(Color.Transparent, useDarkIcons)
-    }
+    LightStatusBar()
 
     // 提供WindowInsets,方便控制状态栏,导航栏,键盘弹起区域等系统窗口
     ProvideWindowInsets {

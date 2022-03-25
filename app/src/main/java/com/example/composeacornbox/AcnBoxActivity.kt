@@ -1,16 +1,21 @@
 package com.example.composeacornbox
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.*
 import androidx.core.view.WindowCompat
-import com.example.composeacornbox.base.BaseActivity
-import com.example.composeacornbox.ui.page.home.HomePage
+import com.example.composeacornbox.data.AppState
+import com.example.composeacornbox.ui.page.PageNavigation
 import com.example.composeacornbox.ui.page.splash.SplashPage
 import com.example.composeacornbox.ui.theme.ACNBoxTheme
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : BaseActivity() {
+@AndroidEntryPoint
+@ExperimentalMaterialApi
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +27,11 @@ class MainActivity : BaseActivity() {
     }
 }
 
-enum class AppState {
-    Splash,
-    Home
-}
-
 /**
  *  App UI
  */
 @Composable
+@ExperimentalMaterialApi
 private fun App() {
     val (appState, setAppState) = remember {
         mutableStateOf(AppState.Splash)
@@ -42,7 +43,7 @@ private fun App() {
         }
 
         AppState.Home -> {
-            HomePage()
+            PageNavigation()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.composeacornbox.ui.page
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ import com.example.composeacornbox.ui.page.workbox.WorkBoxWelcomePage
  * @Description: 页面导航
  */
 
+@ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
 fun PageNavigation() {

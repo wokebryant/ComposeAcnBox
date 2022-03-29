@@ -78,7 +78,7 @@ fun UserCenterPage(
                 }
             }
             LazyColumn(
-                modifier = Modifier.fillMaxWidth().background(Color.White)
+                modifier = Modifier.fillMaxSize().background(Color.White)
             ) {
                 item {
                     HeaderPart()

@@ -1,6 +1,7 @@
 package com.example.composeacornbox.ui.page.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,13 +13,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.composeacornbox.data.*
+import com.example.composeacornbox.data.AccountState
+import com.example.composeacornbox.data.AnimState
+import com.example.composeacornbox.data.HeaderState
+import com.example.composeacornbox.data.SwitchState
 import com.example.composeacornbox.ui.page.usercenter.UserCenterPage
 import com.example.composeacornbox.ui.widget.AccountDialog
+import com.example.composeacornbox.ui.widget.HomeStickyListView
 import com.example.composeacornbox.ui.widget.KYCBottomSheetLayout
 import com.example.composeacornbox.ui.widget.LightStatusBar
+import com.example.composeacornbox.ui.widget.bottomSlider.BottomSlider
 
 /**
  * @Author: LuoJia
@@ -32,6 +37,7 @@ private var addState by mutableStateOf(SwitchState.Close)
 private var kycBottomLayoutState by mutableStateOf(SwitchState.Close)
 private var kycCardAnimState by mutableStateOf(AnimState.Stop)
 
+@ExperimentalFoundationApi
 @Composable
 @ExperimentalMaterialApi
 fun HomePage(
@@ -98,14 +104,16 @@ private fun KycCardWithState() {
 
 /**
  *  底部可拖动布局
- *  TODO 卡顿优化， Fling实现
  */
+@ExperimentalFoundationApi
 @Composable
 private fun BottomSliderWithState(
     navController: NavHostController,
     viewState: HomeViewState
 ) {
-    BottomSlider(navController, viewState)
+    BottomSlider {
+        HomeStickyListView(navController, viewState)
+    }
 }
 
 /**

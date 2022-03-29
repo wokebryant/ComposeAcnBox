@@ -7,6 +7,8 @@ package com.example.composeacornbox.constant
  */
 
 object StringConstant {
+
+    const val LOG = "WokeBryant"
     const val Empty = ""
     const val ACN_Balance = "ACN余额"
 

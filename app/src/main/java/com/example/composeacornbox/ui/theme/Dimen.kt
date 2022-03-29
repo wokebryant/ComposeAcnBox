@@ -16,6 +16,3 @@ val headerCollapseHeight = 120.dp
 val headerExpandHeight = 205.dp
 
 val kycCardHeight = 250.dp
-
-val bottomSliderCollapseHeight = SizeUtils.dp2px(330.0f)
-val bottomSlideExpandHeight = SizeUtils.dp2px(700.0f)

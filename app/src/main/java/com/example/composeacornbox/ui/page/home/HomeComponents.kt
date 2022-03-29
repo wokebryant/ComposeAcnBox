@@ -4,7 +4,8 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,24 +16,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
-import androidx.compose.ui.input.nestedscroll.NestedScrollSource
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.*
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.composeacornbox.R
 import com.example.composeacornbox.constant.StringConstant
-import com.example.composeacornbox.data.*
+import com.example.composeacornbox.data.AnimState
+import com.example.composeacornbox.data.HeaderState
+import com.example.composeacornbox.data.SwitchState
+import com.example.composeacornbox.data.reverse
 import com.example.composeacornbox.ui.theme.*
-import com.example.composeacornbox.ui.widget.HomeStickyListView
 import com.example.composeacornbox.utils.SizeUtils
 import com.google.accompanist.insets.statusBarsPadding
 
@@ -49,7 +50,7 @@ fun Header(
     viewState: HomeViewState,
     onHeaderStateChange: (HeaderState, SwitchState) -> Unit,
 ) {
-    var accountState = viewState.accountState[0]
+    val accountState = viewState.accountState[0]
     var eyeState: SwitchState by remember {
         mutableStateOf(SwitchState.Open)
     }
@@ -226,73 +227,4 @@ fun KycCard(animState: AnimState, onSwitchStateChange: (SwitchState) -> Unit) {
             )
         }
     }
-}
-
-var bottomHeight by mutableStateOf(bottomSliderCollapseHeight.toFloat())
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun BottomSlider(
-    navController: NavHostController,
-    viewState: HomeViewState
-) {
-    val nestedScrollConnection = remember(bottomHeight) {
-        BottomSliderNestedScrollConnection(bottomHeight)
-    }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(with(LocalDensity.current) { bottomHeight.toDp() })
-            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
-            .background(Color.White)
-            .padding(top = 10.dp)
-            .nestedScroll(nestedScrollConnection)
-
-    ) {
-        HomeStickyListView(navController, viewState)
-    }
-}
-
-/**
- *  处理嵌套滑动
- */
-private class BottomSliderNestedScrollConnection(val height: Float) : NestedScrollConnection {
-    override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
-        return if (source == NestedScrollSource.Drag && available.y < 0) {
-            if (height < bottomSlideExpandHeight) {
-                bottomHeight -= available.y
-                Offset(x = 0f, y = available.y)
-            } else {
-                Offset.Zero
-            }
-        } else {
-            Offset.Zero
-        }
-    }
-
-    override fun onPostScroll(
-        consumed: Offset,
-        available: Offset,
-        source: NestedScrollSource
-    ): Offset {
-        return if (source == NestedScrollSource.Drag && available.y > 0) {
-            if (height >= bottomSliderCollapseHeight) {
-                bottomHeight -= available.y
-                Offset(x = 0f, y = available.y)
-            } else {
-                Offset.Zero
-            }
-        } else {
-            Offset.Zero
-        }
-    }
-
-    override suspend fun onPreFling(available: Velocity): Velocity {
-        return super.onPreFling(available)
-    }
-
-    override suspend fun onPostFling(consumed: Velocity, available: Velocity): Velocity {
-        return super.onPostFling(consumed, available)
-    }
-
 }

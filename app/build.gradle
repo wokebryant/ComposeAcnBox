@@ -93,6 +93,8 @@ dependencies {
     implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist_version"
     // 导航动画
     implementation "com.google.accompanist:accompanist-navigation-animation:$accompanist_version"
+    // WebView
+    implementation "com.google.accompanist:accompanist-webview:0.24.5-alpha"
 
     /** 三方库 */
     implementation 'com.tencent:mmkv:1.2.12'

@@ -14,10 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.composeacornbox.data.AccountState
-import com.example.composeacornbox.data.AnimState
-import com.example.composeacornbox.data.HeaderState
-import com.example.composeacornbox.data.SwitchState
+import com.example.composeacornbox.data.*
 import com.example.composeacornbox.ui.page.usercenter.UserCenterPage
 import com.example.composeacornbox.ui.widget.AccountDialog
 import com.example.composeacornbox.ui.widget.HomeStickyListView
@@ -86,7 +83,7 @@ private fun HeaderWithState(
                 avatarState = switchState
             }
             HeaderState.Add -> {
-                addState = switchState
+                addState = addState.reverse()
             }
         }
     }
@@ -148,10 +145,14 @@ private fun UserCenterPageWithState(viewState: HomeViewState) {
 private fun AccountDialogWithState() {
     val visible = addState == SwitchState.Open
     AnimatedVisibility(visible) {
-        AccountDialog { accountState ->
+        AccountDialog { accountState, close ->
             when(accountState) {
                 AccountState.Transfer -> {}
                 AccountState.Collection -> {}
+                else -> {}
+            }
+            when {
+                close -> addState = SwitchState.Close
             }
         }
     }

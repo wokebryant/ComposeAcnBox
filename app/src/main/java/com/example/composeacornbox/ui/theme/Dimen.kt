@@ -1,8 +1,6 @@
 package com.example.composeacornbox.ui.theme
 
 import androidx.compose.ui.unit.dp
-import com.example.composeacornbox.utils.SizeUtils
-
 /**
  * @Author: LuoJia
  * @Date:

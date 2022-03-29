@@ -6,6 +6,7 @@ import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -184,9 +185,11 @@ fun KycCard(animState: AnimState, onSwitchStateChange: (SwitchState) -> Unit) {
             .offset {
                 IntOffset(offset, 0)
             }
-            .clickable {
-                onSwitchStateChange(SwitchState.Open)
-            },
+            .clickable (
+                onClick = {onSwitchStateChange(SwitchState.Open)},
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ),
         color = WorkBoxPink,
         shape = RoundedCornerShape(40.dp)
     ) {

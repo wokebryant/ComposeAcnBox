@@ -66,7 +66,7 @@ fun AccountDialog(onClick: (AccountState?, Boolean) -> Unit) {
                     Image(
                         painter = painterResource(R.drawable.img_scan_black),
                         contentDescription = null,
-                        modifier = Modifier.size(25.dp)
+                        modifier = Modifier.size(22.dp)
                     )
                     Text(
                         modifier = Modifier.padding(start = 15.dp),
@@ -86,7 +86,7 @@ fun AccountDialog(onClick: (AccountState?, Boolean) -> Unit) {
                     Image(
                         painter = painterResource(R.drawable.img_receive_black),
                         contentDescription = null,
-                        modifier = Modifier.size(25.dp)
+                        modifier = Modifier.size(22.dp)
                     )
                     Text(
                         modifier = Modifier.padding(start = 15.dp),

@@ -133,6 +133,7 @@ fun WalletCreatePage(navController: NavHostController) {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 20.dp)
                 .constrainAs(centerImage){ top.linkTo(tip.bottom, margin = 60.dp) }
                 .offset { IntOffset(x = offset.roundToPx(), y = 0) }
                 .alpha(alpha)

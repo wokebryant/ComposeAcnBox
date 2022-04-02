@@ -1,10 +1,21 @@
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
-    }
-}
+
+// Android Studio火狐和之后的版本, 新增下列选选项, 但是会和Flutter里的仓库冲突，这里干脆注释掉
+
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositories {
+//        google()
+//        mavenCentral()
+//        jcenter() // Warning: this repository is going to shut down soon
+//    }
+//}
 rootProject.name = "Compose Acorn Box"
 include ':app'
+
+// gradle 7.0以上无法导入[Groovy]包下的Binding类
+// 但是能正常使用。。。
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'ja_flutter_moudle/.android/include_flutter.groovy'
+))

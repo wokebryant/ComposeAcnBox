@@ -21,6 +21,11 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        ndk {
+            // Filter for architectures supported by Flutter.
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+        }
     }
 
     buildTypes {
@@ -101,6 +106,8 @@ dependencies {
     implementation "com.airbnb.android:lottie-compose:5.0.3"
     implementation "io.coil-kt:coil-compose:2.0.0-rc02"
     implementation "io.coil-kt:coil-gif:2.0.0-rc02"
+
+    implementation project(':flutter')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

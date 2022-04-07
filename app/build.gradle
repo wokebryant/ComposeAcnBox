@@ -113,9 +113,12 @@ dependencies {
     implementation "io.coil-kt:coil-gif:2.0.0-rc02"
 
     /** flutter */
-    implementation "io.flutter:flutter_embedding_release:$flutter_lib_version"
-    implementation "io.flutter:armeabi_v7a_release:$flutter_lib_version"
-    implementation "io.flutter:arm64_v8a_release:$flutter_lib_version"
+    // AAR依赖
+//    implementation "io.flutter:flutter_embedding_release:$flutter_lib_version"
+//    implementation "io.flutter:armeabi_v7a_release:$flutter_lib_version"
+//    implementation "io.flutter:arm64_v8a_release:$flutter_lib_version"
+//    implementation project(':flutter_module')
+    // 源码依赖
     implementation project(':flutter')
 
     testImplementation 'junit:junit:4.13.2'

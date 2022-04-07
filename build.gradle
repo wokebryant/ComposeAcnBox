@@ -6,7 +6,7 @@ buildscript {
         accompanist_version = '0.23.1'
         hilt_version = '2.41'
         flutter_lib_version = '1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6'
-        flutter_lib_dir = projectDir.getPath() + "/flutter/libs"
+        flutter_lib_dir = projectDir.getPath() + "/flutter_module/libs"
     }
     repositories {
         google()

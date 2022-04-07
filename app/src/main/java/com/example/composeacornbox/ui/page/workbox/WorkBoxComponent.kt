@@ -34,7 +34,11 @@ import com.example.composeacornbox.ui.widget.WorkBoxItem
  */
 
 @Composable
-fun WBHeader(onlyClose: Boolean = false, onClose: () -> Unit) {
+fun WBHeader(
+    onlyClose: Boolean = false,
+    onClose: () -> Unit,
+    onClick: (() -> Unit)? = null
+) {
     Column {
         Row(
             modifier = Modifier
@@ -62,7 +66,7 @@ fun WBHeader(onlyClose: Boolean = false, onClose: () -> Unit) {
                 TextButton(
                     modifier = Modifier.size(28.dp),
                     shape = CircleShape,
-                    onClick = {},
+                    onClick = { onClick?.invoke() },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Red,
                         contentColor = Color.White

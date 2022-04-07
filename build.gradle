@@ -5,6 +5,8 @@ buildscript {
         coroutines_version = '1.6.0'
         accompanist_version = '0.23.1'
         hilt_version = '2.41'
+        flutter_lib_version = '1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6'
+        flutter_lib_dir = projectDir.getPath() + "/flutter/libs"
     }
     repositories {
         google()
@@ -24,6 +26,11 @@ allprojects {
         google()
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        // flutter_module编译AAR时会自动创建远程仓库
+        // 包含Flutter引擎编译产物(libFlutter.so)和Flutter嵌入Native能力编译产物(flutter_embedding.jar)
+        maven {
+            url 'https://storage.googleapis.com/download.flutter.io'
+        }
     }
 }
 

@@ -11,11 +11,12 @@
 //}
 rootProject.name = "Compose Acorn Box"
 include ':app'
+include ':flutter'
 
 // gradle 7.0以上无法导入[Groovy]包下的Binding类
 // 但是能正常使用。。。
-setBinding(new Binding([gradle: this]))
-evaluate(new File(
-        settingsDir.parentFile,
-        'ja_flutter_moudle/.android/include_flutter.groovy'
-))
+//setBinding(new Binding([gradle: this]))
+//evaluate(new File(
+//        settingsDir.parentFile,
+//        'ja_flutter_module/.android/include_flutter.groovy'
+//))

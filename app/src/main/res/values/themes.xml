@@ -23,4 +23,8 @@
     <style name="Theme.ComposeAcornBox.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ComposeAcornBox.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Flutter" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>

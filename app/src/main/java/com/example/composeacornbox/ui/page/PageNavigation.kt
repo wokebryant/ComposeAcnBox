@@ -18,6 +18,7 @@ import com.example.composeacornbox.ui.page.login.WalletCreatePage
 import com.example.composeacornbox.ui.page.login.WalletImportPage
 import com.example.composeacornbox.ui.page.recommend.RecommendPage
 import com.example.composeacornbox.ui.page.webview.WebViewPage
+import com.example.composeacornbox.ui.page.workbox.WorkBoxExtractSalaryPage
 import com.example.composeacornbox.ui.page.workbox.WorkBoxPage
 import com.example.composeacornbox.ui.page.workbox.WorkBoxWelcomePage
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -37,7 +38,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 fun PageNavigation() {
     val navController = rememberAnimatedNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val startDestination = RouteName.WORK_BOX
+    val startDestination = RouteName.LOGIN
 
     AnimatedNavHost(
         navController = navController,
@@ -99,6 +100,9 @@ fun PageNavigation() {
         }
         composable(route = RouteName.WEB_VIEW) {
             WebViewPage(navController)
+        }
+        composable(route = RouteName.WORK_BOX_SALARY_RECORD) {
+            WorkBoxExtractSalaryPage(navController)
         }
     }
 }

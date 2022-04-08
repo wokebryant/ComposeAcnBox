@@ -48,7 +48,6 @@ fun WorkBoxWelcomePage(navController: NavHostController) {
             modifier = Modifier.fillMaxSize().statusBarsPadding()
         ) {
             WBHeader(
-                onlyClose = true,
                 onClose = { navController.back() }
             )
             WBAnimationLoader(

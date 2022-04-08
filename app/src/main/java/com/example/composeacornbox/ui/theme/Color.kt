@@ -9,6 +9,7 @@ val Teal200 = Color(0xFF03DAC5)
 
 val AcnBlack = Color(0xFF2E3233)
 val AcnGreen = Color(0xFF15E981)
+val WorkBoxGreen = Color(0xFF00C77B)
 val WorkBoxBg = Color(0xFFF6F6F8)
 val WorkBoxGray = Color(0xFFE0E0E0)
 val WorkBoxBrown = Color(0xFF8D655E)

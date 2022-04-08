@@ -11,6 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.composeacornbox.constant.FlutterEngineId
+import com.example.composeacornbox.constant.StringConstant
 import com.example.composeacornbox.ui.page.usercenter.WorkBoxViewModel
 import com.example.composeacornbox.ui.theme.WorkBoxBg
 import com.example.composeacornbox.ui.widget.DarkStatusBar
@@ -43,6 +44,8 @@ fun WorkBoxPage(
             modifier = Modifier.fillMaxSize().statusBarsPadding()
         ) {
             WBHeader (
+                title = StringConstant.workBox,
+                isWorkBox = true,
                 onClose = { navController.back() },
                 onClick = { jumpToTaskFlutterActivity(context) }
             )

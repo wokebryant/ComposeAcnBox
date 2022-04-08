@@ -22,5 +22,5 @@ evaluate(new File(
         settingsDir.parentFile,
         'ja_flutter_module/.android/include_flutter.groovy'
 ))
-include ':ja_flutter_module'
-project(':ja_flutter_module').projectDir = new File('../ja_flutter_module')
+//include ':ja_flutter_module'
+//project(':ja_flutter_module').projectDir = new File('../ja_flutter_module')

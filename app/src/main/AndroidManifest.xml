@@ -33,6 +33,8 @@
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity android:name=".TestFlutterActivity"/>
+
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -24,7 +25,10 @@ import com.example.composeacornbox.data.DApp
 import com.example.composeacornbox.data.Recommend
 import com.example.composeacornbox.data.UserCenter
 import com.example.composeacornbox.data.WorkBox
+import com.example.composeacornbox.ui.page.workbox.SalaryRecord
+import com.example.composeacornbox.ui.theme.AcnBlack
 import com.example.composeacornbox.ui.theme.AcnGreen
+import com.example.composeacornbox.ui.theme.WorkBoxGreen
 import com.example.composeacornbox.ui.theme.divideLineGray
 
 /**
@@ -163,4 +167,27 @@ fun WorkBoxItem(workBox: WorkBox) {
         }
     }
 
+}
+
+@Composable
+fun ExtratSalaryItem(item: SalaryRecord) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 15.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = item.date,
+            fontSize = 14.sp,
+            color = AcnBlack
+        )
+        Text(
+            modifier = Modifier.weight(1.0f),
+            textAlign = TextAlign.End ,
+            text = item.salary,
+            color = WorkBoxGreen,
+            fontSize = 14.sp
+        )
+    }
 }

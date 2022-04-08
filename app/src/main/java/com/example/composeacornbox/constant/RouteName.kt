@@ -13,5 +13,6 @@ object RouteName {
     const val IMPORT_WALLET = "import_wallet"
     const val WORK_BOX = "work_box"
     const val WORK_BOX_WELCOME = "work_box_welcome"
+    const val WORK_BOX_SALARY_RECORD = "work_box_salary_record"
     const val RECOMMEND = "recommend"
 }

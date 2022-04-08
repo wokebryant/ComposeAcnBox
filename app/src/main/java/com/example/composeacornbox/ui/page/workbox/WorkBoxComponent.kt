@@ -35,10 +35,16 @@ import com.example.composeacornbox.ui.widget.WorkBoxItem
 
 @Composable
 fun WBHeader(
-    onlyClose: Boolean = false,
+    isWorkBox: Boolean = false,
+    title: String = StringConstant.Empty,
     onClose: () -> Unit,
     onClick: (() -> Unit)? = null
 ) {
+    val icon = if (isWorkBox) {
+        painterResource(R.drawable.ic_workbox_power)
+    } else {
+        painterResource(R.drawable.ic_back_black)
+    }
     Column {
         Row(
             modifier = Modifier
@@ -48,21 +54,24 @@ fun WBHeader(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(R.drawable.ic_workbox_power),
+                painter = icon,
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(24.dp).clickable {
                     onClose.invoke()
                 }
             )
-            if (!onlyClose) {
+            if (title.isNotBlank()) {
                 Spacer(modifier = Modifier.size(30.dp))
                 Text(
-                    text = StringConstant.workBox,
-                    fontWeight = FontWeight.W400,
+                    text = title,
+                    fontWeight = FontWeight.W600,
                     fontSize = 18.sp
                 )
                 Spacer(modifier = Modifier.weight(1f))
+
+            }
+            if (isWorkBox) {
                 TextButton(
                     modifier = Modifier.size(28.dp),
                     shape = CircleShape,

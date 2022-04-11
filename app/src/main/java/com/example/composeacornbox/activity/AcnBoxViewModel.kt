@@ -1,4 +1,4 @@
-package com.example.composeacornbox
+package com.example.composeacornbox.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

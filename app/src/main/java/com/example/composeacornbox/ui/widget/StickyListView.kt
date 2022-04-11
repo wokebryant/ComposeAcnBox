@@ -92,11 +92,11 @@ fun RecommendListView(
             RecommendItem(recommend) { itemName ->
                 when(itemName) {
                     "WorkBox" -> {
-                        RouteUtils.navTo(navController, RouteName.RECOMMEND)
+                        RouteUtils.navTo(navController, RouteName.WORK_BOX_SALARY_RECORD)
                     }
 
                     "tata" -> {
-                        RouteUtils.navTo(navController, RouteName.RECOMMEND)
+                        RouteUtils.navTo(navController, RouteName.WORK_BOX_SALARY_RECORD)
                     }
                 }
             }

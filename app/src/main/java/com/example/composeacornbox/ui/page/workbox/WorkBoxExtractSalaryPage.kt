@@ -1,5 +1,6 @@
 package com.example.composeacornbox.ui.page.workbox
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,14 +9,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.composeacornbox.constant.StringConstant
-import com.example.composeacornbox.ui.theme.*
+import com.example.composeacornbox.data.SalaryRecord
+import com.example.composeacornbox.ui.theme.WorkBoxBg
+import com.example.composeacornbox.ui.theme.WorkBoxGreen
+import com.example.composeacornbox.ui.theme.WorkBoxHint
 import com.example.composeacornbox.ui.widget.DarkStatusBar
-import com.example.composeacornbox.ui.widget.ExtratSalaryItem
+import com.example.composeacornbox.ui.widget.ExtractSalaryItem
+import com.example.composeacornbox.utils.RouteUtils.back
 
 /**
  * @Author: LuoJia
@@ -24,7 +30,8 @@ import com.example.composeacornbox.ui.widget.ExtratSalaryItem
  */
 
 @Composable
-fun WorkBoxExtractSalaryPage(navController: NavHostController) {
+fun WorkBoxExtractSalaryPage(navController: NavHostController?) {
+    val context = LocalContext.current as Activity
     DarkStatusBar()
     Box(
         modifier = Modifier
@@ -36,7 +43,11 @@ fun WorkBoxExtractSalaryPage(navController: NavHostController) {
             WBHeader(
                 title = StringConstant.extractSalaryRecord,
                 onClose = {
-
+                    if (navController != null) {
+                        navController.back()
+                    } else {
+                        context.finish()
+                    }
                 }
             )
             SalaryTotalView()
@@ -60,7 +71,7 @@ fun SalaryTotalView() {
         )
         Spacer(modifier = Modifier.size(5.dp))
         Text(
-            text = "累计提取",
+            text = StringConstant.extractTotal,
             fontSize = 14.sp,
             fontWeight = FontWeight.W400,
             color = WorkBoxHint
@@ -73,7 +84,7 @@ fun SalaryRecordListView() {
     val list = getSalaryRecordList()
     LazyColumn {
         items(list) {
-            ExtratSalaryItem(it)
+            ExtractSalaryItem(it)
         }
         item {
             Box(
@@ -84,7 +95,7 @@ fun SalaryRecordListView() {
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text = "没有更多了",
+                    text = StringConstant.noMore,
                     color = WorkBoxHint,
                     fontSize = 14.sp
                 )
@@ -96,9 +107,4 @@ fun SalaryRecordListView() {
 fun getSalaryRecordList() = listOf(
     SalaryRecord(date = "2021-11-08 10:59", salary = "6.9ACN"),
     SalaryRecord(date = "2021-07-30 1:55", salary = "54.2736ACN")
-)
-
-data class SalaryRecord(
-  val date: String,
-  val salary: String
 )

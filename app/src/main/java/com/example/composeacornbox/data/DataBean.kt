@@ -39,3 +39,8 @@ data class WorkBox(
     val group: Int,
     val bgUrl: String = ""
 )
+
+data class SalaryRecord(
+    val date: String,
+    val salary: String
+)

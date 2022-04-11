@@ -58,6 +58,7 @@ object StringConstant {
     const val workBox = "WorkBox"
     const val extractSalaryRecord = "提取工资记录"
     const val extractTotal = "累计提取"
+    const val noMore = "没有更多了"
     const val subsidyIncentive = "补贴奖励"
     const val kycDialogTitle = "我们需要确认您的身份"
     const val kycDialogContent = "为了更好的维护每个ACN用户的利益，更好的排除作弊或虚假用户，我们需要您提供一些简单的信息，以验证您的身份"

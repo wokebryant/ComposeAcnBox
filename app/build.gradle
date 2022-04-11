@@ -120,6 +120,8 @@ dependencies {
 //    implementation project(':flutter_module')
     // 源码依赖
     implementation project(':flutter')
+    // 闲鱼混合开发框架
+    implementation project(':flutter_boost')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -4,11 +4,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,12 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.composeacornbox.R
-import com.example.composeacornbox.constant.StringConstant
-import com.example.composeacornbox.data.DApp
-import com.example.composeacornbox.data.Recommend
-import com.example.composeacornbox.data.UserCenter
-import com.example.composeacornbox.data.WorkBox
-import com.example.composeacornbox.ui.page.workbox.SalaryRecord
+import com.example.composeacornbox.data.*
 import com.example.composeacornbox.ui.theme.AcnBlack
 import com.example.composeacornbox.ui.theme.AcnGreen
 import com.example.composeacornbox.ui.theme.WorkBoxGreen
@@ -43,9 +40,11 @@ fun DAppItem(dApp: DApp, onItemClick: (String) -> Unit) {
         modifier = Modifier
             .size(65.dp)
             .border(2.dp, color = divideLineGray, shape = RoundedCornerShape(15.dp))
-            .clickable {
-                onItemClick(dApp.name)
-            },
+            .clickable(
+                onClick = { onItemClick(dApp.name) },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ) ,
         shape = RoundedCornerShape(15.dp),
     ) {
         AsyncImage(
@@ -63,7 +62,11 @@ fun RecommendItem(recommend: Recommend, onItemClick: (String) -> Unit) {
             .fillMaxWidth()
             .padding(horizontal = 10.dp, vertical = 5.dp)
             .height(330.dp)
-            .clickable { onItemClick(recommend.name) },
+            .clickable(
+                onClick = { onItemClick(recommend.name) },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ),
         shape = RoundedCornerShape(35.dp),
         color = recommend.bgColor
     ) {
@@ -96,8 +99,15 @@ fun RecommendItem(recommend: Recommend, onItemClick: (String) -> Unit) {
 @Composable
 fun UserCenterItem(userCenter: UserCenter, onItemClick: () -> Unit) {
     Column(
-        modifier = Modifier.fillMaxWidth().height(60.dp).padding(horizontal = 20.dp)
-            .clickable { onItemClick() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .padding(horizontal = 20.dp)
+            .clickable(
+                onClick = onItemClick,
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() }
+            ),
         verticalArrangement = Arrangement.Center
     ) {
         Row(
@@ -170,7 +180,7 @@ fun WorkBoxItem(workBox: WorkBox) {
 }
 
 @Composable
-fun ExtratSalaryItem(item: SalaryRecord) {
+fun ExtractSalaryItem(item: SalaryRecord) {
     Row(
         modifier = Modifier
             .fillMaxWidth()

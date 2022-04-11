@@ -1,6 +1,5 @@
 package com.example.composeacornbox.ui.page.usercenter
 
-import android.widget.Toast
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -20,9 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.composeacornbox.R
-import com.example.composeacornbox.base.App
 import com.example.composeacornbox.constant.StringConstant
 import com.example.composeacornbox.data.SwitchState
 import com.example.composeacornbox.data.UserCenter
@@ -110,9 +107,7 @@ fun HeaderPart() {
 fun BodyPart(userCenterList: List<UserCenter>) {
     var currentGroup = userCenterList[0].group
     for (userCenter in userCenterList) {
-        UserCenterItem(userCenter) {
-            Toast.makeText(App.CONTEXT, " 用户中心Item点击", Toast.LENGTH_SHORT).show()
-        }
+        UserCenterItem(userCenter, onItemClick = {})
         if (userCenter.group != currentGroup) {
             Spacer(modifier = Modifier.size(50.dp))
             currentGroup = userCenter.group

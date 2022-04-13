@@ -38,7 +38,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 fun PageNavigation() {
     val navController = rememberAnimatedNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val startDestination = RouteName.WORK_BOX
+    val startDestination = RouteName.LOGIN
 
     AnimatedNavHost(
         navController = navController,

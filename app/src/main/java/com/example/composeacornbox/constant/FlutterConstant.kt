@@ -6,4 +6,4 @@ package com.example.composeacornbox.constant
  * @Description:
  */
 const val FlutterEngineId = "ja_flutter_engine_id"
-const val FlutterInitRoute = "ja_init_route"
+const val FlutterInitRoute = "wb_personal_page"

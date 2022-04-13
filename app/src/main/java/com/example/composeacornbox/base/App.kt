@@ -5,6 +5,8 @@ import android.app.Application
 import android.content.Context
 import com.example.composeacornbox.constant.FlutterEngineId
 import com.example.composeacornbox.constant.FlutterInitRoute
+import com.example.composeacornbox.flutter.boostDelegate
+import com.idlefish.flutterboost.FlutterBoost
 import dagger.hilt.android.HiltAndroidApp
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
@@ -27,7 +29,9 @@ class App : Application()  {
         super.onCreate()
         CONTEXT = this
 
+        // 两种混合开发模式任选其一即可
         initFlutterEngine()
+        initFlutterBoost()
     }
 
     /**
@@ -48,6 +52,16 @@ class App : Application()  {
         FlutterEngineCache
             .getInstance()
             .put(FlutterEngineId, flutterEngine)
+    }
+
+    /**
+     *  初始化闲鱼FlutterBoost
+     *  闲鱼的也不支持单Activity模式。。。难顶
+     */
+    private fun initFlutterBoost() {
+        FlutterBoost.instance().setup(this, boostDelegate) {
+
+        }
     }
 
 }

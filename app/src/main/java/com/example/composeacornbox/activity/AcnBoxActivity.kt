@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun flutterJumpToNative() {
-        startActivity(Intent(this, FlutterJumpActivity::class.java))
+        startActivity(Intent(this, WBRecordActivity::class.java))
     }
 
     override fun onDestroy() {

@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:name=".base.App"
         android:theme="@style/Theme.ComposeAcornBox">
+
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"
@@ -35,19 +36,23 @@
 
         <activity
             android:name="com.idlefish.flutterboost.containers.FlutterBoostActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+            android:theme="@style/Theme.Flutter"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize" />
 
-        </activity>
+        <activity
+            android:name=".activity.BaseFlutterActivity"
+            android:theme="@style/Theme.Flutter"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize" />
+
         <meta-data android:name="flutterEmbedding"
             android:value="2">
         </meta-data>
 
-
-
-        <activity android:name=".activity.FlutterJumpActivity"/>
+        <activity android:name=".activity.WBRecordActivity"/>
 
     </application>
 

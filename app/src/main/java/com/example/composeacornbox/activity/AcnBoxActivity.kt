@@ -22,6 +22,7 @@ import com.example.composeacornbox.ui.page.splash.SplashPage
 import com.example.composeacornbox.ui.theme.ACNBoxTheme
 import dagger.hilt.android.AndroidEntryPoint
 import io.flutter.embedding.engine.FlutterEngineCache
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
 
     private fun observeFlutterChannel() {
         lifecycleScope.launch {
-            viewModel.channelEvent.flowWithLifecycle(lifecycle).collect { event ->
+            viewModel.channelEvent.flowWithLifecycle(lifecycle).collectLatest { event ->
                 when (event) {
                     is ChannelEvent.NavigationEvent -> flutterJumpToNative()
                     is ChannelEvent.KeyEvent -> {}

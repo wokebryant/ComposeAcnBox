@@ -1,9 +1,9 @@
 buildscript {
     ext {
-        kotlin_version = '1.6.10'
-        compose_version = '1.1.1'
-        coroutines_version = '1.6.0'
-        accompanist_version = '0.23.1'
+        kotlin_version = '1.6.21'
+        compose_version = '1.2.0-beta03'
+        coroutines_version = '1.6.2'
+        accompanist_version = '0.24.10-beta'
         hilt_version = '2.41'
         flutter_lib_version = '1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6'
         flutter_lib_dir = projectDir.getPath() + "/flutter_module/libs"

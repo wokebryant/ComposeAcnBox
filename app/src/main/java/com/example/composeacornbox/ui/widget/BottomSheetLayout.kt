@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun KYCBottomSheetLayout(switchState: SwitchState, stateListener: (ModalBottomSheetValue)-> Unit) {
     val initValue = when (switchState) {
-        SwitchState.Open -> ModalBottomSheetValue.Expanded
+        SwitchState.Open -> ModalBottomSheetValue.HalfExpanded
         SwitchState.Close -> ModalBottomSheetValue.Hidden
     }
     // TODO 1.2.0版本的Compose支持跳过显示半屏，等待官方升级至稳定版1.2.0
